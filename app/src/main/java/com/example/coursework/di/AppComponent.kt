@@ -1,7 +1,7 @@
 package com.example.coursework.di
 
 import android.app.Application
-import com.example.coursework.main.MainActivity
+import com.example.coursework.main.BooksActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -12,7 +12,7 @@ import javax.inject.Singleton
     StorageModule::class,
     ViewModelModule::class])
 interface AppComponent {
-    fun inject(target: MainActivity)
+    fun inject(target: BooksActivity)
 
     @Component.Builder
     interface Builder {
