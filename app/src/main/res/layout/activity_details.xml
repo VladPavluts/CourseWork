@@ -49,30 +49,31 @@
             app:layout_constraintVertical_bias="0.0"
             tools:text="@tools:sample/full_names" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/downloadButton"
-            android:layout_width="135dp"
-            android:layout_height="40dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/downloadButton"
+        android:layout_width="135dp"
+        android:layout_height="40dp"
 
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/download"
-            app:layout_constraintEnd_toStartOf="@+id/openButton"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/download"
+        app:layout_constraintEnd_toStartOf="@+id/openButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/openButton"
-            android:layout_width="135dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/open"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/downloadButton"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBarD" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/openButton"
+        android:layout_width="135dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="32dp"
+        android:visibility="invisible"
+        android:text="@string/open"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/downloadButton"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarD" />
 
     <ScrollView
         android:layout_width="355dp"

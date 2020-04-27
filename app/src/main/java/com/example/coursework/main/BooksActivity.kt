@@ -3,6 +3,7 @@ package com.example.coursework.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.example.coursework.Const.BOOK
 import com.example.coursework.R
 import com.example.coursework.app.LibraryApplication
 import com.example.coursework.details.DetailsActivity
+import kotlinx.android.synthetic.main.activity_books.*
 import javax.inject.Inject
 
 class BooksActivity : AppCompatActivity() {
@@ -43,7 +45,25 @@ class BooksActivity : AppCompatActivity() {
             adapter.updateList(books)
         })
 
+        viewModel.isLoading.observe(this, Observer {
+            if(it == true){
+                startLoading()
+            }else{
+                stopLoading()
+            }
+        })
+
         list.adapter=adapter
         list.layoutManager=LinearLayoutManager(this)
+    }
+
+    private fun startLoading(){
+        constraintLayout.visibility = View.INVISIBLE
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun stopLoading(){
+        constraintLayout.visibility = View.VISIBLE
+        progressBar.visibility = View.INVISIBLE
     }
 }

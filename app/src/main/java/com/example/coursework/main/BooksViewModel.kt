@@ -13,7 +13,15 @@ class BooksViewModel @Inject constructor(private val db: Firestore):ViewModel(){
     val books: LiveData<List<Book>>
         get() = booksLiveData
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     fun getFromCloudSt(){
-        db.getAllBooks({list: List<Book> -> booksLiveData.value=list  },{})
+        db.getAllBooks({list: List<Book> ->
+            booksLiveData.value=list
+        _isLoading.value=false},{})
+
+        _isLoading.value=true
     }
 }

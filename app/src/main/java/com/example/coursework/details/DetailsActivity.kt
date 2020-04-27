@@ -3,10 +3,12 @@ package com.example.coursework.details
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.coursework.Const.BOOK
@@ -42,7 +44,14 @@ class DetailsActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.descriptionD).text=book.description
         findViewById<RatingBar>(R.id.ratingBarD).rating=book.rating
 
-        findViewById<Button>(R.id.downloadButton).setOnClickListener {  }
-        findViewById<Button>(R.id.openButton).setOnClickListener {  }
+        findViewById<Button>(R.id.downloadButton).setOnClickListener {
+            viewModel.down(this,book)
+        }
+        viewModel.isButtonVisible.observe(this, Observer {
+            if(it == true){
+                findViewById<Button>(R.id.openButton).visibility= View.VISIBLE
+            }
+        })
+        findViewById<Button>(R.id.openButton).setOnClickListener { viewModel.open(this,book) }
     }
 }
