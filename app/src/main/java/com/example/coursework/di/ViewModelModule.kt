@@ -3,6 +3,7 @@ package com.example.coursework.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.coursework.details.DetailsViewModel
+import com.example.coursework.login.LoginViewModel
 import com.example.coursework.main.BooksViewModel
 import dagger.Binds
 import dagger.Module
@@ -23,6 +24,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailsViewModel::class)
     internal abstract fun detailsViewModel(viewModel: DetailsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    internal abstract fun loginViewModel(viewModel: LoginViewModel): ViewModel
 
 
 }

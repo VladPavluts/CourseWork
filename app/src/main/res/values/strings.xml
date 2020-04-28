@@ -5,4 +5,7 @@
     <string name="pict">pict</string>
     <string name="search">search</string>
     <string name="updateby">updateBy</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
