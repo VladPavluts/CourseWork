@@ -1,6 +1,7 @@
 package com.example.coursework.main
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -24,7 +25,7 @@ class BooksActivity : AppCompatActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: BooksViewModel
     lateinit var adapter: BooksAdapter
-
+    private var isT=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,7 @@ class BooksActivity : AppCompatActivity() {
         (application as LibraryApplication).appComponent.inject(this)
 
         val list=findViewById<RecyclerView>(R.id.personList)
+
         adapter= BooksAdapter(this, mutableListOf()){position: Int ->
             val book= viewModel.books.value!![position]
             val intent = Intent(this, DetailsActivity::class.java)
@@ -42,7 +44,7 @@ class BooksActivity : AppCompatActivity() {
 
         viewModel=ViewModelProvider(this,viewModelFactory).get(BooksViewModel::class.java)
 
-        viewModel.getFromCloudSt()
+        viewModel.getFromCloudStByName()
 
         viewModel.books.observe(this, Observer {books ->
             adapter.updateList(books)
@@ -55,6 +57,17 @@ class BooksActivity : AppCompatActivity() {
                 stopLoading()
             }
         })
+
+        fab.setColorFilter(Color.WHITE)
+        fab.setOnClickListener {
+            isT = if(isT){
+                viewModel.getFromCloudStByName()
+                false
+            } else{
+                viewModel.getFromCloudStByRating()
+                true
+            }
+        }
 
         list.adapter=adapter
         list.layoutManager=LinearLayoutManager(this)
