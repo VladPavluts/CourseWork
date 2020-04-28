@@ -3,7 +3,10 @@ package com.example.coursework.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,6 +58,35 @@ class BooksActivity : AppCompatActivity() {
 
         list.adapter=adapter
         list.layoutManager=LinearLayoutManager(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.search_menu,menu)
+        viewModel.books.observe(this, Observer{ books ->
+            val search=menu.findItem(R.id.itemSearch).actionView as SearchView
+            search.maxWidth= Int.MAX_VALUE
+            search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(query: String?): Boolean {
+                    query?.let {
+                        adapter.updateList(books.filter {
+                            it.name.contains(query, ignoreCase = true)
+                          })
+                    }
+                    return true
+                }
+
+            })
+            search.setOnCloseListener {
+                adapter.updateList(books)
+                return@setOnCloseListener false
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun startLoading(){
