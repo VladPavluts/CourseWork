@@ -74,6 +74,7 @@ class BooksActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.search_menu,menu)
         viewModel.books.observe(this, Observer{ books ->
@@ -99,7 +100,7 @@ class BooksActivity : AppCompatActivity() {
                 return@setOnCloseListener false
             }
         })
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
 
     private fun startLoading(){
