@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Book (val name:String="",
+data class Book (val bID: String="",
+                 val name:String="",
                  val description: String="",
                  val bookPicturePath:String="",
                  val rating: Float= 0.0F,

@@ -76,8 +76,8 @@
         app:layout_constraintTop_toBottomOf="@+id/ratingBarD" />
 
     <ScrollView
-        android:layout_width="339dp"
-        android:layout_height="391dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.814"
@@ -104,4 +104,15 @@
             app:layout_constraintVertical_bias="0.0"
             tools:text="@tools:sample/lorem/random" />
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/jjj"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarD" />
 </androidx.constraintlayout.widget.ConstraintLayout>

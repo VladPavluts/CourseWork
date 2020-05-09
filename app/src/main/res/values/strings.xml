@@ -8,4 +8,9 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="jjj">Отзывы</string>
+    <string name="pl">Добавьте отзыв</string>
+    <string name="enter">Enter…</string>
+    <string name="_1_5">Добавьте оценку от 1 до 5</string>
+    <string name="save">Save</string>
 </resources>
