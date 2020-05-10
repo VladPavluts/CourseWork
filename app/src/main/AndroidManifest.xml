@@ -18,16 +18,14 @@
         </activity>
         <activity android:name=".review.ReviewActivity" />
         <activity android:name=".login.LoginActivity" >
-
-        </activity>
-        <activity android:name=".details.DetailsActivity" />
-        <activity android:name=".main.BooksActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".details.DetailsActivity" />
+        <activity android:name=".main.BooksActivity" />
     </application>
 
 </manifest>
