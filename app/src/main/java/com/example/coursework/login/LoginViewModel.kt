@@ -32,6 +32,14 @@ class LoginViewModel @Inject constructor(private val auth: FireAuth):ViewModel()
         _moveToList.value = true
     }
 
+    private val _moveToListGuest = MutableLiveData<Boolean>()
+    val moveToListGuest: LiveData<Boolean>
+        get() = _moveToListGuest
+
+    fun moveToListGuest(){
+        _moveToListGuest.value = true
+    }
+
     private fun finishedEvent(result: Boolean){
         if(result){
             _errorCode.value = 0//everything ok

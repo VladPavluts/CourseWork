@@ -12,14 +12,15 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
+import com.example.coursework.Const.AUTH
 import com.example.coursework.Const.BOOK
 import com.example.coursework.Const.PATH
 import com.example.coursework.R
 import com.example.coursework.app.LibraryApplication
 import com.example.coursework.model.Book
-import com.example.coursework.model.Review
 import com.example.coursework.review.ReviewActivity
 import com.example.coursework.storage.Storage
+import kotlinx.android.synthetic.main.activity_details.*
 import javax.inject.Inject
 
 class DetailsActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class DetailsActivity : AppCompatActivity() {
         viewModel=ViewModelProvider(this,viewModelFactory).get(DetailsViewModel::class.java)
 
         val book=intent.getParcelableExtra<Book>(BOOK)
-
+        val isA=intent.getBooleanExtra(AUTH,true)
         if(book!!.bookPicturePath!="") {
             Storage.getCurrentRef(book.bookPicturePath).downloadUrl.addOnSuccessListener { uri: Uri? ->
                 findViewById<ImageView>(R.id.imageView).load(uri){
@@ -48,7 +49,10 @@ class DetailsActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.descriptionD).text=book.description
         findViewById<RatingBar>(R.id.ratingBarD).rating=book.rating
 
-        findViewById<Button>(R.id.downloadButton).setOnClickListener {
+        if (!isA)
+            textClick.visibility=View.INVISIBLE
+
+        downloadButton.setOnClickListener {
             viewModel.down(this,book)
         }
         viewModel.isButtonVisible.observe(this, Observer {
@@ -56,9 +60,9 @@ class DetailsActivity : AppCompatActivity() {
                 findViewById<Button>(R.id.openButton).visibility= View.VISIBLE
             }
         })
-        findViewById<Button>(R.id.openButton).setOnClickListener { viewModel.open(this,book) }
+        openButton.setOnClickListener { viewModel.open(this,book) }
 
-        findViewById<TextView>(R.id.textClick).setOnClickListener {
+        textClick.setOnClickListener {
             val intent = Intent(this, ReviewActivity::class.java)
             intent.putExtra(PATH,book.bID)
             startActivity(intent)

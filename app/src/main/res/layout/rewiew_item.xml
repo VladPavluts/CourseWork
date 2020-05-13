@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toTopOf="@+id/ratingBarRew"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/full_names" />
+        tools:text="Гость" />
 
     <TextView
         android:id="@+id/rew"

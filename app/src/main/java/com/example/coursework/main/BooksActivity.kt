@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.coursework.Const.AUTH
 import com.example.coursework.Const.BOOK
 import com.example.coursework.R
 import com.example.coursework.app.LibraryApplication
@@ -33,12 +34,14 @@ class BooksActivity : AppCompatActivity() {
 
         (application as LibraryApplication).appComponent.inject(this)
 
+        val isA=intent.getBooleanExtra(AUTH,true)
         val list=findViewById<RecyclerView>(R.id.personList)
 
         adapter= BooksAdapter(this, mutableListOf()){position: Int ->
             val book= viewModel.books.value!![position]
             val intent = Intent(this, DetailsActivity::class.java)
             intent.putExtra(BOOK,book)
+            intent.putExtra(AUTH,isA)
             startActivity(intent)
         }
 

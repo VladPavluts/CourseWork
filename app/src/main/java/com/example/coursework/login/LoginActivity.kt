@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.coursework.Const.AUTH
 import com.example.coursework.R
 import com.example.coursework.app.LibraryApplication
 import com.example.coursework.databinding.ActivityLoginBinding
@@ -18,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: LoginViewModel
-
+    var isAuth: Boolean=true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -51,6 +52,14 @@ class LoginActivity : AppCompatActivity() {
         viewModel.moveToList.observe(this, Observer { event: Boolean ->
             if (event) {
                 val intent = Intent(this, BooksActivity::class.java)
+                startActivity(intent)
+            }
+        })
+        viewModel.moveToListGuest.observe(this, Observer { event: Boolean ->
+            if (event) {
+                val intent = Intent(this, BooksActivity::class.java)
+                isAuth=false
+                intent.putExtra(AUTH,isAuth)
                 startActivity(intent)
             }
         })
